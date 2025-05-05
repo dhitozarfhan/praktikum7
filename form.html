@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>FORMULIR ORANG ANAK MAMA</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+  <div class="form-container">
+    <!-- Judul Utama -->
+    <div class="form-header">
+      <h2>FORMULIR ORANG ANAK MAMA</h2>
+      <p>Silakan isi data diri Anda dengan lengkap dan benar.</p>
+    </div>
+
+    <!-- Form Input -->
+    <form id="formulir">
+      <fieldset>
+        <p>Nama:<br><input type="text" id="nama" name="nama" required></p>
+        <p>Alamat:<br><input type="text" id="alamat" name="alamat" required></p>
+        <p>Password:<br><input type="password" id="pass" name="pass" required></p>
+
+        <p>Jenis Kelamin:<br>
+          <label><input type="radio" name="jk" value="laki-laki" checked> Laki - Laki</label><br>
+          <label><input type="radio" name="jk" value="perempuan"> Perempuan</label>
+        </p>
+
+        <p>Bahasa Pemrograman yang Dikuasai:<br>
+          <label><input type="checkbox" name="web"> Web</label><br>
+          <label><input type="checkbox" name="mobile"> MOBILE</label><br>
+          <label><input type="checkbox" name="desk"> DESKTOP</label>
+        </p>
+
+        <p>Kota Asal:<br>
+          <select id="kota">
+            <option>Bantul</option>
+            <option>Bandung</option>
+            <option>Yogyakarta</option>
+          </select>
+        </p>
+
+        <p>Alasan Anda Layak Menjadi Hebat:<br>
+          <textarea rows="5" id="alasan" placeholder="Tulis jawaban Anda di sini" required></textarea>
+        </p>
+
+        <input type="submit" value="Submit">
+      </fieldset>
+    </form>
+
+    <!-- Tombol Home -->
+    <a class="back" href="index.html">Home</a>
+  </div>
+
+  <script>
+    document.getElementById("formulir").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nama = document.getElementById("nama").value;
+      const alamat = document.getElementById("alamat").value;
+      const alasan = document.getElementById("alasan").value;
+      const kota = document.getElementById("kota").value;
+
+      const jk = document.querySelector('input[name="jk"]:checked')?.value || "";
+      const web = document.querySelector('input[name="web"]')?.checked ? "Web " : "";
+      const mobile = document.querySelector('input[name="mobile"]')?.checked ? "Mobile " : "";
+      const desk = document.querySelector('input[name="desk"]')?.checked ? "Desktop " : "";
+
+      const bahasa = web + mobile + desk;
+
+      const data = {
+        nama, alamat, alasan, kota, jk, bahasa
+      };
+
+      localStorage.setItem("formData", JSON.stringify(data));
+      alert("Data berhasil disimpan. Buka halaman About Me untuk melihat.");
+    });
+  </script>
+</body>
+</html>

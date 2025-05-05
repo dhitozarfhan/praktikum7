@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tentang Saya</title>
+  <link rel="stylesheet" href="aboutme.css">
+</head>
+<body>
+    <h2>About Me</h2>
+    <div id="hasil-data"></div>
+  
+    <button class="back"><a href="index.html">Home</a></button>
+  
+    <script>
+      const hasil = document.getElementById("hasil-data");
+      const data = JSON.parse(localStorage.getItem("formData"));
+  
+      if (data) {
+        hasil.innerHTML = `
+          <p><strong>Nama:</strong> ${data.nama}</p>
+          <p><strong>Alamat:</strong> ${data.alamat}</p>
+          <p><strong>Jenis Kelamin:</strong> ${data.jk}</p>
+          <p><strong>Bahasa dikuasai:</strong> ${data.bahasa}</p>
+          <p><strong>Asal:</strong> ${data.kota}</p>
+          <p><strong>Alasan menjadi sukses:</strong> ${data.alasan}</p>
+        `;
+      } else {
+        hasil.innerHTML = "<p>Belum ada data yang disimpan.</p>";
+      }
+    </script>
+  </body>
+  
+</html>
